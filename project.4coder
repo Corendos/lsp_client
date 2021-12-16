@@ -1,0 +1,57 @@
+version(1);
+project_name = "lsp_client";
+
+patterns = {
+"*.c",
+"*.cpp",
+"*.h",
+"*.m",
+"*.mm",
+"*.bat",
+"*.sh",
+"*.4coder",
+"*.txt",
+};
+blacklist_patterns = {
+".*",
+};
+load_paths_custom = {
+ {"libs"},
+ {"client"},
+};
+load_paths = {
+ { load_paths_custom, .os = "win"  },
+ { load_paths_custom, .os = "linux"},
+ { load_paths_custom, .os = "mac"  },
+};
+
+build_x64_win = "call scripts/build_debug.bat";
+run_x64_win = "";
+
+command_list = {
+    {
+        .name = "build x64",
+        .out = "*compilation*",
+        .footer_panel = true,
+        .save_dirty_files = true,
+        .cmd = {
+            { build_x64_win, .os ="win"  },
+            { build_x64_linux, .os ="linux"},
+            { build_x64_mac, .os ="mac"  }
+    	}
+	},
+	{
+		.name = "run super x64",
+		.out = "*run*",
+		.footer_panel = true,
+		.save_dirty_files = true,
+		.cmd = {
+			{ run_x64_win, .os ="win" },
+            { run_x64_linux, .os ="linux" },
+            { run_x64_mac , .os ="mac"  }
+		}
+	}
+};
+
+fkey_command[1] = "build x64";
+fkey_command[2] = "run x64";
