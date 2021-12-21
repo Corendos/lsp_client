@@ -11,6 +11,7 @@ struct Iterator {
 };
 
 Iterator make_iterator(const char *data, u64 size);
+Iterator make_iterator(StringU8 *str);
 Iterator make_iterator(ConstStringU8 *str);
 
 char peek(Iterator* it, u64 offset);

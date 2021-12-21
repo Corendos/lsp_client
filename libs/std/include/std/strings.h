@@ -13,10 +13,20 @@ struct ConstStringU8 {
     u64 size;
 };
 
+struct ConstStringU8Array {
+    ConstStringU8* values;
+    u64 count;
+};
+
 struct StringU8 {
     char *data;
     u64 size;
     u64 capacity;
+};
+
+struct StringU8Array {
+    StringU8* strings;
+    u64 count;
 };
 
 StringU8 make_string(char *str, u64 size);
@@ -42,7 +52,7 @@ ConstStringU8 push_const_string(Arena* arena, const char *str, u64 size);
 ConstStringU8 push_const_string(Arena* arena, const char *str);
 ConstStringU8 copy_const_string(Arena* arena, ConstStringU8 other);
 
-#define SCu8(raw_str) make_const_string((raw_str), sizeof(raw_str) / sizeof((raw_str)[0]))
+#define SCu8(raw_str) ConstStringU8{(raw_str), (sizeof(raw_str) / sizeof(*(raw_str))) - 1}
 
 bool write_to(StringU8 *str, char c);
 i64 format_to(StringU8 *str, const char* format, ...);

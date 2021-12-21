@@ -1,13 +1,16 @@
 #include <std/iterator.h>
 #include <std/characters.h>
 
-
 Iterator make_iterator(const char *data, u64 size) {
     Iterator it = {data, data, size};
     return it;
 }
 
 Iterator make_iterator(ConstStringU8 *str) {
+    return make_iterator(str->data, str->size);
+}
+
+Iterator make_iterator(StringU8 *str) {
     return make_iterator(str->data, str->size);
 }
 

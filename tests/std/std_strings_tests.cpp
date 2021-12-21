@@ -31,12 +31,19 @@ test_case(string_creation_test_3) {
 
 test_case(const_string_creation_test_1) {
     const char raw_str[] = "This is a string";
-    ConstStringU8 str = make_const_string(raw_str);
+    ConstStringU8 str = SCu8(raw_str);
     test_check("The two string should have equal length", strlen(raw_str) == str.size);
     test_check("The two string should be equal", strncmp(raw_str, str.data, str.size) == 0);
 }
 
 test_case(const_string_creation_test_2) {
+    const char raw_str[] = "This is a string";
+    ConstStringU8 str = make_const_string(raw_str);
+    test_check("The two string should have equal length", strlen(raw_str) == str.size);
+    test_check("The two string should be equal", strncmp(raw_str, str.data, str.size) == 0);
+}
+
+test_case(const_string_creation_test_3) {
     const char raw_str[] = "This is a string";
     Arena arena = make_arena();
     ConstStringU8 str = push_const_string(&arena, raw_str);
@@ -159,6 +166,7 @@ test_case(all_std_string) {
     test_run_test(string_creation_test_3);
     test_run_test(const_string_creation_test_1);
     test_run_test(const_string_creation_test_2);
+    test_run_test(const_string_creation_test_3);
     test_run_test(string_copy_test);
     test_run_test(const_string_copy_test);
     test_run_test(string_comparison_test);

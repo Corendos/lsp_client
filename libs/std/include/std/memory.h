@@ -7,7 +7,7 @@
 #define MB(x) (u64)(x) * 1024ull * 1024ull
 #define GB(x) (u64)(x) * 1024ull * 1024ull * 1024ull
 
-#define array_size(a) sizeof(a) / sizeof((a)[0])
+#define array_size(a) sizeof(a) / sizeof(*(a))
 
 struct ArenaNode {
     u8 *data;
