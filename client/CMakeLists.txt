@@ -1,7 +1,12 @@
 add_executable(lsp_client)
 
-target_sources(lsp_client PRIVATE src/main.cpp src/lsp/types.cpp)
-target_link_libraries(lsp_client PRIVATE libstd libjson)
+target_sources(lsp_client PRIVATE src/main.cpp
+								  src/lsp/types.cpp
+								  src/lsp/request_hash_table.cpp
+								  src/lsp/reader.cpp
+								  src/lsp/writer.cpp
+								  src/lsp/client.cpp)
+target_link_libraries(lsp_client PRIVATE libjson libreborn)
 target_include_directories(lsp_client PRIVATE include)
 set_target_properties(lsp_client PROPERTIES
                                  RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin
